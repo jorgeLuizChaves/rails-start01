@@ -1,4 +1,4 @@
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>
@@ -9,20 +9,27 @@
       <th>quantidade</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="table-hover">
+    <% for p in @products %>
     <tr>
       <td>
-        camiseta
+        <%= p.name %>
       </td>
       <td>
-        descrição
+        <%= p.description %>
       </td>
       <td>
-        R$ 20,00
+        <%= p.price %>
       </td>
       <td>
-        34
+        <%= p.quantity %>
+      </td>
+      <td>
+        <%= button_to "Delete", p , method: :delete, class: "btn btn-danger", data: {confirm: "quer deletar o #{p.name}"} %>
       </td>
     </tr>
+      <% end %>
   </tbody>
 </table>
+
+<%= link_to "criar novo", new_product_path %>
