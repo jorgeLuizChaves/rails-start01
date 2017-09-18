@@ -1,6 +1,4 @@
 class Product < ApplicationRecord
-
-  def find_all_by(parameter_order)
-      Product.all.order parameter_order
-  end
+  validates :quantity , presence: true
+  validates :name , length: {minimum: 6 }
 end

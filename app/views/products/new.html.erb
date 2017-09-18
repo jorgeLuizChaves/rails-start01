@@ -1,7 +1,12 @@
 <div style="height: 60px">
 
 </div>
-<%= form_for Product.new do |f| %>
+
+<% @product.errors.full_messages.each do |m| %>
+    <div class="alert alert-danger" role="alert"><%=m%></div>
+<% end %>
+
+<%= form_for @product do |f| %>
 
     <div class="form-group">
       <%= f.label :name %>

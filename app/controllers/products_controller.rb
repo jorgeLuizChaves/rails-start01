@@ -5,19 +5,29 @@ class ProductsController < ApplicationController
   end
 
   def new
-
+    @product = Product.new
   end
 
   def create
     values = params.required(:product).permit!
-    Product.create values
-    redirect_to root_url
+    @product = Product.new values
+    if @product.save
+      flash[:notice] = "Produto salvo com sucesso"
+      redirect_to root_url
+    else
+      render :new
+    end
   end
 
   def destroy
     id = params[:id]
     Product.destroy id
     redirect_to root_url
+  end
+
+  def search
+    @name = params[:nome]
+    @products = Product.where "name like ?", "%#{@name}%"
   end
 
 

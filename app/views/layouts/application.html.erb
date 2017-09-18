@@ -9,7 +9,14 @@
   </head>
 
   <body>
-  <%= nav_bar fixed: :top, brand: "Learning Rails", brand_link: root_url %>
+  <%= nav_bar fixed: :top, brand: "Learning Rails", brand_link: root_url do %>
+    <%= form_tag search_product_path, method: :get, class: "navbar-form navbar-right" do %>
+      <div class="form-group">
+        <%= text_field_tag :nome, @name, class: "form-control" %>
+        <%= button_to "Buscar", nil, class: "btn btn-default" %>
+      </div>
+    <% end %>
+  <% end %>
   <div class="container" style="margin-top: 60px">
     <%= yield %>
   </div>
