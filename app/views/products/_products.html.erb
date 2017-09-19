@@ -1,0 +1,41 @@
+<% if flash[:notice] %>
+    <div class="alert alert-success" role="alert"><%=flash[:notice]%></div>
+<% end %>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>
+      nome
+    </th>
+    <th>descriçao</th>
+    <th>preço</th>
+    <th>quantidade</th>
+  </tr>
+  </thead>
+  <tbody class="table-hover">
+  <% for p in @products %>
+      <tr>
+        <td>
+          <%= p.name %>
+        </td>
+        <td>
+          <%= p.description %>
+        </td>
+        <td>
+          <%= p.price %>
+        </td>
+        <td>
+          <%= p.quantity %>
+        </td>
+        <td>
+          <%= button_to "Delete", p , method: :delete, class: "btn btn-danger", data: {confirm: "quer deletar o #{p.name}"} %>
+        </td>
+        <td>
+          <%= button_to "Edit", edit_product_path(p.id), method: :get, class: "btn btn-default" %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "criar novo", new_product_path %>
